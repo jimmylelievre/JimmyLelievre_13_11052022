@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../assets/img/argentBankLogo.png";
 import { NavLink } from "react-router-dom";
 import UserCircle from "./icons/UserCircle";
+import SignOut from "./icons/SignOut";
 
-const Header = () => {
+const Header = ({ user, name }) => {
   return (
     <div className="header">
       <nav className="main-nav">
@@ -12,11 +13,26 @@ const Header = () => {
         </NavLink>
 
         <ul>
-          <NavLink to="/sign-in">
-            {" "}
-            <UserCircle />
-            <li>Sign In</li>
-          </NavLink>
+          {user ? (
+            <div>
+              <NavLink to="/sign-in">
+                {" "}
+                <UserCircle />
+                <li>{name}</li>
+              </NavLink>
+              <NavLink to="/">
+                {" "}
+                <SignOut />
+                <li>Sign Out</li>
+              </NavLink>
+            </div>
+          ) : (
+            <NavLink to="/sign-in">
+              {" "}
+              <UserCircle />
+              <li>Sign In</li>
+            </NavLink>
+          )}
         </ul>
       </nav>
     </div>
