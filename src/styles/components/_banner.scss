@@ -1,0 +1,28 @@
+.banner {
+  img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .banner-content {
+    background: white;
+    padding: 2rem;
+    text-align: left;
+    margin: 0 auto;
+    position: absolute;
+    top: 120px;
+    right: 50px;
+    width: 364px;
+    margin: 2rem;
+  }
+  .subtitle {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .text {
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+}

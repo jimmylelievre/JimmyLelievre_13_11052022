@@ -5,7 +5,7 @@ import UserCircle from "./icons/UserCircle";
 
 const Header = () => {
   return (
-    <div>
+    <div className="header">
       <nav className="main-nav">
         <NavLink to="/">
           <img className="logo" src={logo} alt="Argent Bank Logo" />

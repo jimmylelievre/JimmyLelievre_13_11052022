@@ -1,19 +1,21 @@
-.logo {
-  max-width: 100%;
-  width: 200px;
-}
-.main-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 20px;
-}
-a {
-  display: flex;
-}
-ul {
-  width: 80px;
-}
-li {
-  margin-left: 5px;
+.header {
+  .logo {
+    max-width: 100%;
+    width: 200px;
+  }
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+  }
+  a {
+    display: flex;
+  }
+  ul {
+    width: 80px;
+  }
+  li {
+    margin-left: 5px;
+  }
 }
