@@ -1,7 +1,6 @@
 import React from "react";
 import Banner from "../components/Banner";
 import FeatureItem from "../components/FeatureItem";
-import Footer from "../components/Footer";
 import iconChat from "../assets/img/icon-chat.png";
 import iconMoney from "../assets/img/icon-money.png";
 import iconSecurity from "../assets/img/icon-security.png";
