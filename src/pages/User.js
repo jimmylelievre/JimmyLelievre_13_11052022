@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Account from "../components/Account";
 import Header from "../components/Header";
 
 const User = () => {
+  const [editToggle, setEditToggle] = useState(false);
+
   return (
     <div>
       <Header user="user" name="Tony" />
@@ -13,7 +15,36 @@ const User = () => {
             <br />
             Tony Jarvis!
           </h1>
-          <button class="edit-button">Edit Name</button>
+          {editToggle ? (
+            <div className="edit-text">
+              <div>
+                <input type="text" placeholder="Tony" />
+                <input type="text" placeholder="Jarvis" />
+              </div>
+              <div>
+                <button
+                  onClick={() => setEditToggle(!editToggle)}
+                  class="edit-button-modify"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={() => setEditToggle(!editToggle)}
+                  class="edit-button-modify"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={() => setEditToggle(!editToggle)}
+              class="edit-button"
+            >
+              Edit Name
+            </button>
+          )}
+
           <Account
             accountTitle="Argent Bank Checking (x8349)"
             accountAmount="$2,082.79"
