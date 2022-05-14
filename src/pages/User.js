@@ -10,13 +10,9 @@ const User = () => {
       <Header user="user" name="Tony" />
       <div className="background-content">
         <div className="user">
-          <h1>
-            Welcome back
-            <br />
-            Tony Jarvis!
-          </h1>
           {editToggle ? (
             <div className="edit-text">
+              <h1>Welcome back</h1>
               <div>
                 <input type="text" placeholder="Tony" />
                 <input type="text" placeholder="Jarvis" />
@@ -37,12 +33,19 @@ const User = () => {
               </div>
             </div>
           ) : (
-            <button
-              onClick={() => setEditToggle(!editToggle)}
-              class="edit-button"
-            >
-              Edit Name
-            </button>
+            <div className="flex">
+              <h1>
+                Welcome back
+                <br />
+                Tony Jarvis!
+              </h1>
+              <button
+                onClick={() => setEditToggle(!editToggle)}
+                class="edit-button"
+              >
+                Edit Name
+              </button>
+            </div>
           )}
 
           <Account
