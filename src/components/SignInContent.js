@@ -1,27 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import UserCircle from "./icons/UserCircle";
 
 const SignInContent = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isRemember, setIsRemember] = useState(false);
+
+  const handleOnChange = () => {
+    setIsRemember(!isRemember);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    /* email && password && dispatch(getToken(email, password, isRemember)); */
+  };
+
   return (
     <div className="background-content">
-      <div class="sign-in-content">
+      <div className="sign-in-content">
         <UserCircle />
         <h1>Sign In</h1>
-        <form>
-          <div class="input-wrapper">
-            <label for="username">Username</label>
-            <input type="text" id="username" />
+        <form onSubmit={handleSubmit}>
+          <div className="input-wrapper">
+            <label htmlFor="username">Username</label>
+            <input
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              id="username"
+              required
+            />
           </div>
-          <div class="input-wrapper">
-            <label for="password">Password</label>
-            <input type="password" id="password" />
+          <div className="input-wrapper">
+            <label htmlFor="password">Password</label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              id="password"
+              required
+            />
           </div>
-          <div class="input-remember">
-            <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Remember me</label>
+          <div className="input-remember">
+            <input
+              checked={isRemember}
+              onChange={handleOnChange}
+              type="checkbox"
+              id="remember-me"
+            />
+            <label htmlFor="remember-me">Remember me</label>
           </div>
 
-          <button class="sign-in-button">Sign In</button>
+          <button className="sign-in-button">Sign In</button>
         </form>
       </div>
     </div>

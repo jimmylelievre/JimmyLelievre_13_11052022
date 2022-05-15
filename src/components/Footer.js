@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div class="footer">
+    <div className="footer">
       <p>Copyright 2020 Argent Bank</p>
     </div>
   );
