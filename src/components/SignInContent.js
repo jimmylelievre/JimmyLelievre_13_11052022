@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserCircle from "./icons/UserCircle";
 
 const SignInContent = () => {
@@ -6,12 +8,26 @@ const SignInContent = () => {
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleOnChange = () => {
     setIsRemember(!isRemember);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post("http://localhost:3001/api/v1/user/login", {
+        email: username,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/user");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     /* email && password && dispatch(getToken(email, password, isRemember)); */
   };

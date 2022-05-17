@@ -1,16 +1,14 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Account from "../components/Account";
 import Header from "../components/Header";
 
 const User = () => {
   const [editToggle, setEditToggle] = useState(false);
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [firstname, setFirstName] = useState("Tony");
+  const [lastname, setLastname] = useState("Jarvis");
 
-  useEffect(() => {
-    axios.get("http://localhost:3001/").then((res) => console.log(res));
-  });
+  const user = useSelector((state) => console.log(state));
 
   return (
     <div>
@@ -22,7 +20,7 @@ const User = () => {
               <h1>Welcome back</h1>
               <div>
                 <input
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setFirstName(e.target.value)}
                   type="text"
                   placeholder="Tony"
                 />
@@ -52,7 +50,7 @@ const User = () => {
               <h1>
                 Welcome back
                 <br />
-                Tony Jarvis!
+                {firstname} {lastname}!
               </h1>
               <button
                 onClick={() => setEditToggle(!editToggle)}
