@@ -1,14 +1,60 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Account from "../components/Account";
 import Header from "../components/Header";
+import { setUserData } from "../feature/user.slice";
 
 const User = () => {
   const [editToggle, setEditToggle] = useState(false);
-  const [firstname, setFirstName] = useState("Tony");
-  const [lastname, setLastname] = useState("Jarvis");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [newFirstName, setNewFirstName] = useState("");
+  const [newLastName, setNewLastName] = useState("");
 
-  const user = useSelector((state) => console.log(state));
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.token.payload);
+  const userData = useSelector((state) => state.user);
+
+  useEffect(() => {
+    setFirstName(userData.firstName);
+    setLastname(userData.lastName);
+  }, [userData.firstName, userData.lastName]);
+
+  if (token) {
+    axios({
+      method: "POST",
+      url: "http://localhost:3001/api/v1/user/profile",
+      data: {},
+      headers: {
+        Authorization: "Bearer " + token,
+        accept: "application/json",
+      },
+    })
+      .then((res) => {
+        dispatch(setUserData(res.data.body));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const handleSubmitt = () => {
+    axios({
+      method: "PUT",
+      url: "http://localhost:3001/api/v1/user/profile",
+      data: {
+        firstName: newFirstName,
+        lastName: newLastName,
+      },
+      headers: {
+        Authorization: "Bearer " + token,
+        accept: "application/json",
+      },
+    });
+    console.log("yes");
+  };
 
   return (
     <div>
@@ -20,26 +66,33 @@ const User = () => {
               <h1>Welcome back</h1>
               <div>
                 <input
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={(e) => setNewFirstName(e.target.value)}
                   type="text"
-                  placeholder="Tony"
+                  placeholder={newFirstName}
                 />
                 <input
-                  onChange={(e) => setLastname(e.target.value)}
+                  onChange={(e) => setNewLastName(e.target.value)}
                   type="text"
-                  placeholder="Jarvis"
+                  placeholder={newLastName}
                 />
               </div>
               <div>
                 <button
-                  onClick={() => setEditToggle(!editToggle)}
+                  onClick={() => {
+                    handleSubmitt();
+                    setEditToggle(!editToggle);
+                  }}
                   className="edit-button-modify"
+                  type="button"
                 >
                   Save
                 </button>
                 <button
-                  onClick={() => setEditToggle(!editToggle)}
+                  onClick={() => {
+                    setEditToggle(!editToggle);
+                  }}
                   className="edit-button-modify"
+                  type="button"
                 >
                   Cancel
                 </button>
@@ -50,7 +103,7 @@ const User = () => {
               <h1>
                 Welcome back
                 <br />
-                {firstname} {lastname}!
+                {firstname} {lastname} !
               </h1>
               <button
                 onClick={() => setEditToggle(!editToggle)}

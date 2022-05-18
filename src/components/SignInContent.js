@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userLogin } from "../feature/auth.slice";
 import UserCircle from "./icons/UserCircle";
 
 const SignInContent = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -22,14 +26,12 @@ const SignInContent = () => {
         password: password,
       })
       .then((res) => {
-        console.log(res);
+        dispatch(userLogin(res.data.body.token));
         navigate("/user");
       })
       .catch((err) => {
         console.log(err);
       });
-
-    /* email && password && dispatch(getToken(email, password, isRemember)); */
   };
 
   return (
