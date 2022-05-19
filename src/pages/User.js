@@ -53,7 +53,6 @@ const User = () => {
         accept: "application/json",
       },
     });
-    console.log("yes");
   };
 
   return (
@@ -68,12 +67,12 @@ const User = () => {
                 <input
                   onChange={(e) => setNewFirstName(e.target.value)}
                   type="text"
-                  placeholder={newFirstName}
+                  placeholder={firstname}
                 />
                 <input
                   onChange={(e) => setNewLastName(e.target.value)}
                   type="text"
-                  placeholder={newLastName}
+                  placeholder={lastname}
                 />
               </div>
               <div>
