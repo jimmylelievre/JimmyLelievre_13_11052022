@@ -15,11 +15,9 @@ const Header = ({ user, name }) => {
         <ul>
           {user ? (
             <div className="link">
-              <NavLink to="/sign-in">
-                {" "}
-                <UserCircle />
-                <li>{name}</li>
-              </NavLink>
+              <UserCircle />
+              <li>{name}</li>
+
               <NavLink to="/">
                 {" "}
                 <SignOut />

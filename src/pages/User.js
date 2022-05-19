@@ -59,7 +59,7 @@ const User = () => {
   return (
     <div>
       <Header user="user" name="Tony" />
-      <div className="background-content">
+      <div className="user-background-content">
         <div className="user">
           {editToggle ? (
             <div className="edit-text">

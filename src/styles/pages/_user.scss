@@ -42,3 +42,18 @@
   flex-direction: column;
   align-items: center;
 }
+.user-background-content {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #12002b;
+  width: 100%;
+  height: 822px;
+}
+
+@media (max-width: 720px) {
+  .user-background-content {
+    height: 100%;
+    padding-bottom: 40px;
+  }
+}
