@@ -8,18 +8,17 @@ import { setUserData } from "../feature/user.slice";
 const User = () => {
   const [editToggle, setEditToggle] = useState(false);
   const [firstname, setFirstName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [newFirstName, setNewFirstName] = useState("");
-  const [newLastName, setNewLastName] = useState("");
+  const [lastname, setLastName] = useState("");
 
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.auth.token.payload);
+  /* const token = useSelector((state) => state.auth.token.payload); */
+  const token = localStorage.getItem("token");
   const userData = useSelector((state) => state.user);
 
   useEffect(() => {
     setFirstName(userData.firstName);
-    setLastname(userData.lastName);
+    setLastName(userData.lastName);
   }, [userData.firstName, userData.lastName]);
 
   if (token) {
@@ -45,8 +44,8 @@ const User = () => {
       method: "PUT",
       url: "http://localhost:3001/api/v1/user/profile",
       data: {
-        firstName: newFirstName,
-        lastName: newLastName,
+        firstName: firstname,
+        lastName: lastname,
       },
       headers: {
         Authorization: "Bearer " + token,
@@ -65,14 +64,16 @@ const User = () => {
               <h1>Welcome back</h1>
               <div>
                 <input
-                  onChange={(e) => setNewFirstName(e.target.value)}
+                  onChange={(e) => setFirstName(e.target.value)}
                   type="text"
                   placeholder={firstname}
+                  value={firstname}
                 />
                 <input
-                  onChange={(e) => setNewLastName(e.target.value)}
+                  onChange={(e) => setLastName(e.target.value)}
                   type="text"
                   placeholder={lastname}
+                  value={lastname}
                 />
               </div>
               <div>

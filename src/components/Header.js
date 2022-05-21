@@ -5,6 +5,10 @@ import UserCircle from "./icons/UserCircle";
 import SignOut from "./icons/SignOut";
 
 const Header = ({ user, name }) => {
+  const removeToken = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className="header">
       <nav className="main-nav">
@@ -18,14 +22,14 @@ const Header = ({ user, name }) => {
               <UserCircle />
               <li>{name}</li>
 
-              <NavLink to="/">
+              <NavLink onClick={removeToken} to="/">
                 {" "}
                 <SignOut />
                 <li>Sign Out</li>
               </NavLink>
             </div>
           ) : (
-            <NavLink to="/sign-in">
+            <NavLink to="/login">
               {" "}
               <UserCircle />
               <li>Sign In</li>

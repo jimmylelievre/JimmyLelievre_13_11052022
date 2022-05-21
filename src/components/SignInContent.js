@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "../feature/auth.slice";
 import UserCircle from "./icons/UserCircle";
+import { Navigate } from "react-router-dom";
+import { useLogged } from "../components/Auth";
 
 const SignInContent = () => {
   const [username, setUsername] = useState("");
@@ -11,8 +13,14 @@ const SignInContent = () => {
   const [isRemember, setIsRemember] = useState(false);
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+  const logged = useLogged();
+
+  /* if (isRemember) {
+    localStorage.setItem("username", username);
+    localStorage.setItem("paswword", password);
+  }
+  const name = localStorage.getItem("username"); */
 
   const handleOnChange = () => {
     setIsRemember(!isRemember);
@@ -27,13 +35,16 @@ const SignInContent = () => {
       })
       .then((res) => {
         dispatch(userLogin(res.data.body.token));
-        navigate("/user");
+        localStorage.setItem("token", res.data.body.token);
+        navigate("/profile");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
+  if (logged) {
+    return <Navigate to="/profile" />;
+  }
   return (
     <div className="background-content">
       <div className="sign-in-content">
