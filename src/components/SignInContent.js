@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +7,9 @@ import { Navigate } from "react-router-dom";
 import { useLogged } from "../components/Auth";
 import { setPassword } from "../feature/user.slice";
 import { setUserName } from "../feature/user.slice";
+import { postLogin } from "../utils/apiRequest";
 
 const SignInContent = () => {
-  /* const [username, setUsername] = useState(""); */
-  /* const [password, setPassword] = useState(""); */
   /* const [isRemember, setIsRemember] = useState(false); */
 
   const password = useSelector((state) => state.user.password);
@@ -33,7 +31,16 @@ const SignInContent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
+    postLogin(username, password)
+      .then((res) => {
+        dispatch(userLogin(res.data.body.token));
+        localStorage.setItem("token", res.data.body.token);
+        navigate("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    /*  axios
       .post("http://localhost:3001/api/v1/user/login", {
         email: username,
         password: password,
@@ -45,7 +52,7 @@ const SignInContent = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      }); */
   };
   if (logged) {
     return <Navigate to="/profile" />;

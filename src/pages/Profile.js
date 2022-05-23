@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Account from "../components/Account";
@@ -8,6 +7,7 @@ import {
   setNewLastName,
   setUserData,
 } from "../feature/user.slice";
+import { postToken, putEditProfil } from "../utils/apiRequest";
 
 const Profile = () => {
   const [editToggle, setEditToggle] = useState(false);
@@ -22,15 +22,7 @@ const Profile = () => {
   console.log(userData);
 
   if (token) {
-    axios({
-      method: "POST",
-      url: "http://localhost:3001/api/v1/user/profile",
-      data: {},
-      headers: {
-        Authorization: "Bearer " + token,
-        accept: "application/json",
-      },
-    })
+    postToken(token)
       .then((res) => {
         dispatch(setUserData(res.data.body));
       })
@@ -40,18 +32,7 @@ const Profile = () => {
   }
 
   const handleSubmitt = () => {
-    axios({
-      method: "PUT",
-      url: "http://localhost:3001/api/v1/user/profile",
-      data: {
-        firstName: newFirstName,
-        lastName: newLastName,
-      },
-      headers: {
-        Authorization: "Bearer " + token,
-        accept: "application/json",
-      },
-    });
+    putEditProfil(token, newFirstName, newLastName);
   };
 
   return (
