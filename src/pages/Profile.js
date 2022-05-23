@@ -1,25 +1,25 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Account from "../components/Account";
 import Header from "../components/Header";
-import { setUserData } from "../feature/user.slice";
+import {
+  setNewFirstName,
+  setNewLastName,
+  setUserData,
+} from "../feature/user.slice";
 
-const User = () => {
+const Profile = () => {
   const [editToggle, setEditToggle] = useState(false);
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
 
   const dispatch = useDispatch();
 
-  /* const token = useSelector((state) => state.auth.token.payload); */
   const token = localStorage.getItem("token");
   const userData = useSelector((state) => state.user);
+  const newFirstName = useSelector((state) => state.user.newFirstName);
+  const newLastName = useSelector((state) => state.user.newLastName);
 
-  useEffect(() => {
-    setFirstName(userData.firstName);
-    setLastName(userData.lastName);
-  }, [userData.firstName, userData.lastName]);
+  console.log(userData);
 
   if (token) {
     axios({
@@ -44,8 +44,8 @@ const User = () => {
       method: "PUT",
       url: "http://localhost:3001/api/v1/user/profile",
       data: {
-        firstName: firstname,
-        lastName: lastname,
+        firstName: newFirstName,
+        lastName: newLastName,
       },
       headers: {
         Authorization: "Bearer " + token,
@@ -64,16 +64,15 @@ const User = () => {
               <h1>Welcome back</h1>
               <div>
                 <input
-                  onChange={(e) => setFirstName(e.target.value)}
+                  name="firstName"
+                  onChange={(e) => dispatch(setNewFirstName(e.target.value))}
                   type="text"
-                  placeholder={firstname}
-                  value={firstname}
+                  value={userData.newFirstName}
                 />
                 <input
-                  onChange={(e) => setLastName(e.target.value)}
+                  name="lastName"
+                  onChange={(e) => dispatch(setNewLastName(e.target.value))}
                   type="text"
-                  placeholder={lastname}
-                  value={lastname}
                 />
               </div>
               <div>
@@ -103,7 +102,7 @@ const User = () => {
               <h1>
                 Welcome back
                 <br />
-                {firstname} {lastname} !
+                {userData.firstName} {userData.lastName} !
               </h1>
               <button
                 onClick={() => setEditToggle(!editToggle)}
@@ -135,4 +134,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Profile;

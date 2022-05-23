@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import SignInContent from "../components/SignInContent";
 
-const SignIn = () => {
+const Login = () => {
   return (
     <div>
       <Header />
@@ -11,4 +11,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

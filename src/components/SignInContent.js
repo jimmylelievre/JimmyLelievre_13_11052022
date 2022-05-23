@@ -1,16 +1,21 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "../feature/auth.slice";
 import UserCircle from "./icons/UserCircle";
 import { Navigate } from "react-router-dom";
 import { useLogged } from "../components/Auth";
+import { setPassword } from "../feature/user.slice";
+import { setUserName } from "../feature/user.slice";
 
 const SignInContent = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isRemember, setIsRemember] = useState(false);
+  /* const [username, setUsername] = useState(""); */
+  /* const [password, setPassword] = useState(""); */
+  /* const [isRemember, setIsRemember] = useState(false); */
+
+  const password = useSelector((state) => state.user.password);
+  const username = useSelector((state) => state.user.username);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,9 +27,9 @@ const SignInContent = () => {
   }
   const name = localStorage.getItem("username"); */
 
-  const handleOnChange = () => {
+  /*   const handleOnChange = () => {
     setIsRemember(!isRemember);
-  };
+  }; */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +59,7 @@ const SignInContent = () => {
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => dispatch(setUserName(e.target.value))}
               type="text"
               id="username"
               required
@@ -63,7 +68,7 @@ const SignInContent = () => {
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => dispatch(setPassword(e.target.value))}
               type="password"
               id="password"
               required
@@ -71,8 +76,8 @@ const SignInContent = () => {
           </div>
           <div className="input-remember">
             <input
-              checked={isRemember}
-              onChange={handleOnChange}
+              /* checked={isRemember}
+              onChange={handleOnChange} */
               type="checkbox"
               id="remember-me"
             />
