@@ -5,7 +5,9 @@ const Error = () => {
   return (
     <div>
       <Header />
-      <h1>erreur 404</h1>
+      <div className="error">
+        <h1>Erreur 404</h1>
+      </div>
     </div>
   );
 };

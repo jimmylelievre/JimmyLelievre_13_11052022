@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 /**
- * Check if user logged
+ * Custom hook check if user isLogged, check if user logged
  * @returns
  */
 

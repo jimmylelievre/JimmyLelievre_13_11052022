@@ -1,5 +1,13 @@
 import React from "react";
 
+/**
+ * component for account
+ * @param {accountTitle} string
+ * @param {accountAmount} string
+ * @param {accountDescription} string
+ *
+ */
+
 const Account = ({ accountTitle, accountAmount, accountDescription }) => {
   return (
     <section className="account">

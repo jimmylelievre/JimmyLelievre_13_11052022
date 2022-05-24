@@ -29,6 +29,11 @@ const SignInContent = () => {
     setIsRemember(!isRemember);
   }; */
 
+  /**
+   * when the user submit, do a http post login with data then get token and stock token
+   * @param {Event} e
+   */
+
   const handleSubmit = (e) => {
     e.preventDefault();
     postLogin(username, password)
