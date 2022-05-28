@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Account from "../components/Account";
 import Header from "../components/Header";
-import {
-  setNewFirstName,
-  setNewLastName,
-  setUserData,
-} from "../feature/user.slice";
+import { setFirstName, setLastName, setUserData } from "../feature/user.slice";
 import { postToken, putEditProfil } from "../utils/apiRequest";
 
 const Profile = () => {
@@ -16,23 +12,23 @@ const Profile = () => {
 
   const token = localStorage.getItem("token");
   const userData = useSelector((state) => state.user);
-  const newFirstName = useSelector((state) => state.user.newFirstName);
-  const newLastName = useSelector((state) => state.user.newLastName);
+  const firstName = useSelector((state) => state.user.firstName);
+  const lastName = useSelector((state) => state.user.lastName);
 
-  console.log(userData);
-
-  if (token) {
-    postToken(token)
-      .then((res) => {
-        dispatch(setUserData(res.data.body));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  useEffect(() => {
+    if (token) {
+      postToken(token)
+        .then((res) => {
+          dispatch(setUserData(res.data.body));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   const handleSubmitt = () => {
-    putEditProfil(token, newFirstName, newLastName);
+    putEditProfil(token, firstName, lastName);
   };
 
   return (
@@ -46,14 +42,17 @@ const Profile = () => {
               <div>
                 <input
                   name="firstName"
-                  onChange={(e) => dispatch(setNewFirstName(e.target.value))}
+                  onChange={(e) => {
+                    dispatch(setFirstName(e.target.value));
+                  }}
                   type="text"
-                  value={userData.newFirstName}
+                  value={firstName}
                 />
                 <input
                   name="lastName"
-                  onChange={(e) => dispatch(setNewLastName(e.target.value))}
+                  onChange={(e) => dispatch(setLastName(e.target.value))}
                   type="text"
+                  value={userData.lastName}
                 />
               </div>
               <div>

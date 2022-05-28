@@ -44,20 +44,11 @@ const SignInContent = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err) {
+          document.getElementById("error-message").innerHTML =
+            err.response.data.message;
+        }
       });
-    /*  axios
-      .post("http://localhost:3001/api/v1/user/login", {
-        email: username,
-        password: password,
-      })
-      .then((res) => {
-        dispatch(userLogin(res.data.body.token));
-        localStorage.setItem("token", res.data.body.token);
-        navigate("/profile");
-      })
-      .catch((err) => {
-        console.log(err);
-      }); */
   };
   if (logged) {
     return <Navigate to="/profile" />;
@@ -67,6 +58,7 @@ const SignInContent = () => {
       <div className="sign-in-content">
         <UserCircle />
         <h1>Sign In</h1>
+        <span id="error-message"></span>
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>

@@ -12,18 +12,10 @@ export const userSlice = createSlice({
     __v: 0,
     password: "",
     username: "",
-    newFirstName: "",
-    newLastName: "",
   },
   reducers: {
     setUserData: (state, action) => {
-      const userData = action.payload;
-      state.createdAt = userData.createdAt;
-      state.email = userData.email;
-      state.id = userData.id;
-      state.updatedAt = userData.updatedAt;
-      state.firstName = userData.firstName;
-      state.lastName = userData.lastName;
+      return { ...state, ...action.payload };
     },
     setPassword: (state, action) => {
       state.password = action.payload;
@@ -31,11 +23,12 @@ export const userSlice = createSlice({
     setUserName: (state, action) => {
       state.username = action.payload;
     },
-    setNewFirstName: (state, action) => {
-      state.newFirstName = action.payload;
+    setFirstName: (state, action) => {
+      state.firstName = action.payload;
+      console.log(state.firstName, action);
     },
-    setNewLastName: (state, action) => {
-      state.newLastName = action.payload;
+    setLastName: (state, action) => {
+      state.lastName = action.payload;
     },
   },
 });
@@ -45,6 +38,6 @@ export const {
   setUserData,
   setPassword,
   setUserName,
-  setNewFirstName,
-  setNewLastName,
+  setFirstName,
+  setLastName,
 } = userSlice.actions;

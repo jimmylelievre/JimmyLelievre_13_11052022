@@ -38,6 +38,7 @@ const postToken = async (token) => {
  * @param {string} lastName
  * @returns
  */
+
 const putEditProfil = async (token, firstName, lastName) => {
   return axios({
     method: "PUT",
