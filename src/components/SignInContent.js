@@ -9,25 +9,17 @@ import { setPassword } from "../feature/user.slice";
 import { setUserName } from "../feature/user.slice";
 import { postLogin } from "../utils/apiRequest";
 
-const SignInContent = () => {
-  /* const [isRemember, setIsRemember] = useState(false); */
+/**
+ * Show the form and the content for the login page
+ */
 
+const SignInContent = () => {
   const password = useSelector((state) => state.user.password);
   const username = useSelector((state) => state.user.username);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logged = useLogged();
-
-  /* if (isRemember) {
-    localStorage.setItem("username", username);
-    localStorage.setItem("paswword", password);
-  }
-  const name = localStorage.getItem("username"); */
-
-  /*   const handleOnChange = () => {
-    setIsRemember(!isRemember);
-  }; */
 
   /**
    * when the user submit, do a http post login with data then get token and stock token
@@ -79,12 +71,7 @@ const SignInContent = () => {
             />
           </div>
           <div className="input-remember">
-            <input
-              /* checked={isRemember}
-              onChange={handleOnChange} */
-              type="checkbox"
-              id="remember-me"
-            />
+            <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
 

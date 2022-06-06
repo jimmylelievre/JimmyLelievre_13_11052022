@@ -6,12 +6,19 @@ import SignOut from "./icons/SignOut";
 import { useDispatch } from "react-redux";
 import { userLogout } from "../feature/auth.slice";
 
+/**
+ * Show the header
+ * @param {user} string
+ * @param {name} string
+ */
+
 const Header = ({ user, name }) => {
   const dispatch = useDispatch();
 
   /**
    * Disconnects the user and close session
    */
+
   const signOut = () => {
     dispatch(userLogout());
     localStorage.clear();

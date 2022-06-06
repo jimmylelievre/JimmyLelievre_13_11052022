@@ -6,6 +6,10 @@ import iconMoney from "../assets/img/icon-money.png";
 import iconSecurity from "../assets/img/icon-security.png";
 import Header from "../components/Header";
 
+/**
+ * Show the home page
+ */
+
 const Home = () => {
   return (
     <div>

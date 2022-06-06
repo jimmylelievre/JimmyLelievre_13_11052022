@@ -1,6 +1,10 @@
 import React from "react";
 import Header from "../components/Header";
 
+/**
+ * Show the error page
+ */
+
 const Error = () => {
   return (
     <div>

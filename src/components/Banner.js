@@ -1,6 +1,11 @@
 import React from "react";
 import imgBanner from "../assets/img/bank-tree.jpeg";
 
+/**
+ * Show the banner
+ * @returns
+ */
+
 const Banner = () => {
   return (
     <div className="banner">

@@ -5,6 +5,11 @@ import Header from "../components/Header";
 import { setFirstName, setLastName, setUserData } from "../feature/user.slice";
 import { postToken, putEditProfil } from "../utils/apiRequest";
 
+/**
+ * Show the profile page
+ * @returns
+ */
+
 const Profile = () => {
   const [editToggle, setEditToggle] = useState(false);
 

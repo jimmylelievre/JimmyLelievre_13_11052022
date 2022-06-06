@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * Show the footer
+ * @returns
+ */
+
 const Footer = () => {
   return (
     <div className="footer">
