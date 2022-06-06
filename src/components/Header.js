@@ -37,7 +37,7 @@ const Header = ({ user, name }) => {
               <UserCircle />
               <li>{name}</li>
 
-              <NavLink onClick={signOut} to="/">
+              <NavLink className="sign-out" onClick={signOut} to="/">
                 {" "}
                 <SignOut />
                 <li>Sign Out</li>

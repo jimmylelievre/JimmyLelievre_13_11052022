@@ -57,7 +57,7 @@ const Profile = () => {
                   name="lastName"
                   onChange={(e) => dispatch(setLastName(e.target.value))}
                   type="text"
-                  value={userData.lastName}
+                  value={lastName}
                 />
               </div>
               <div>

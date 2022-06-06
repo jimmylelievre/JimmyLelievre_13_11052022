@@ -26,3 +26,15 @@
     margin-top: 20px;
   }
 }
+@media (max-width: 720px) {
+  .banner {
+    .banner-content {
+      margin: auto auto;
+      position: absolute;
+      top: 120px;
+      right: auto;
+      width: auto;
+      margin: 2rem;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { userLogin } from "../feature/auth.slice";
 import UserCircle from "./icons/UserCircle";
 import { Navigate } from "react-router-dom";
@@ -18,7 +17,6 @@ const SignInContent = () => {
   const username = useSelector((state) => state.user.username);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const logged = useLogged();
 
   /**
@@ -32,7 +30,6 @@ const SignInContent = () => {
       .then((res) => {
         dispatch(userLogin(res.data.body.token));
         localStorage.setItem("token", res.data.body.token);
-        navigate("/profile");
       })
       .catch((err) => {
         console.log(err);

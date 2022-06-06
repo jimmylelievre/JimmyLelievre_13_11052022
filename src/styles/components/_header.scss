@@ -21,3 +21,17 @@
     display: flex;
   }
 }
+@media (max-width: 720px) {
+  .header {
+    a {
+      margin-left: 0;
+    }
+    .main-nav {
+      padding: 5px 10px;
+      justify-content: flex-start;
+    }
+    .sign-out {
+      margin-left: 10px;
+    }
+  }
+}
