@@ -25,7 +25,6 @@ export const userSlice = createSlice({
     },
     setFirstName: (state, action) => {
       state.firstName = action.payload;
-      console.log(state.firstName, action);
     },
     setLastName: (state, action) => {
       state.lastName = action.payload;

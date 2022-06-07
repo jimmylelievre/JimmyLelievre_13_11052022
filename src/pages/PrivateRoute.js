@@ -14,7 +14,7 @@ function PrivateRoute({ component: RouteComponent }) {
   if (logged) {
     return <RouteComponent />;
   } else {
-    return <Navigate to="/sign-in" />;
+    return <Navigate to="/login" />;
   }
 }
 

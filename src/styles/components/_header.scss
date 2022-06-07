@@ -23,6 +23,10 @@
 }
 @media (max-width: 720px) {
   .header {
+    .logo {
+      max-width: 100%;
+      width: 137px;
+    }
     a {
       margin-left: 0;
     }

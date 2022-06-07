@@ -38,7 +38,7 @@ const Profile = () => {
 
   return (
     <div>
-      <Header user="user" name="Tony" />
+      <Header user="user" name={firstName} />
       <div className="user-background-content">
         <div className="user">
           {editToggle ? (
